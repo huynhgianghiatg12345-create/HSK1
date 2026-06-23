@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn Tập Tiếng Trung</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    padding:14px;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+    color:#0f172a;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:960px;
+    background:#fff;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 15px 35px rgba(15,23,42,.15);
+}
+
+h1{
+    margin:0;
+    text-align:center;
+    color:#1e3d59;
+    font-size:clamp(22px,5vw,30px);
+}
+
+.subtitle{
+    text-align:center;
+    color:#64748b;
+    margin:8px 0 18px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.mobile-note{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    color:#1e40af;
+    border-radius:14px;
+    padding:12px;
+    margin-bottom:14px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.settings{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+select,button,input{
+    font-family:inherit;
+}
+
+.select-box{
+    background:#f8fafc;
+    border:1px solid #cbd5e1;
+    border-radius:12px;
+    padding:10px;
+}
+
+.select-box label{
+    display:block;
+    font-size:13px;
+    color:#475569;
+    margin-bottom:5px;
+    font-weight:700;
+}
+
+.select-box select,
+.select-box input{
+    width:100%;
+    border:none;
+    background:transparent;
+    font-size:16px;
+    outline:none;
+    color:#0f172a;
+    font-weight:600;
+}
+
+.select-box input:disabled{
+    color:#94a3b8;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.stat-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:10px;
+    text-align:center;
+}
+
+.stat-label{
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:3px;
+}
+
+.stat-value{
+    font-weight:800;
+    font-size:18px;
+    color:#0f172a;
+}
+
+.progress-wrap{
+    height:11px;
+    border-radius:999px;
+    background:#e2e8f0;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#1e3d59,#ff6e40);
+    transition:width .25s ease;
+}
+
+.question-card{
+    background:#f8fafc;
+    border:2px solid #e2e8f0;
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:18px;
+    text-align:center;
+}
+
+.question-type{
+    display:inline-block;
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:14px;
+}
+
+.question-title{
+    font-size:18px;
+    font-weight:800;
+    color:#334155;
+    margin-bottom:12px;
+    line-height:1.4;
+}
+
+.question-main{
+    margin:8px 0;
+    line-height:1.25;
+    font-weight:900;
+    word-break:break-word;
+}
+
+.hz-main{
+    font-size:clamp(46px,13vw,72px);
+    color:#1e3d59;
+}
+
+.py-main{
+    font-size:clamp(30px,8vw,44px);
+    color:#ff6e40;
+}
+
+.vn-main{
+    font-size:clamp(24px,7vw,34px);
+    color:#0f172a;
+}
+
+.audio-main{
+    font-size:56px;
+    color:#1e3d59;
+}
+
+.hint{
+    margin-top:10px;
+    color:#64748b;
+    font-size:15px;
+    line-height:1.5;
+}
+
+.audio-row{
+    margin-top:14px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.audio-btn,
+.start-audio-btn{
+    border:none;
+    background:#1e3d59;
+    color:white;
+    padding:11px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:800;
+    transition:.2s;
+    touch-action:manipulation;
+}
+
+.start-audio-btn{
+    width:100%;
+    margin-bottom:14px;
+    background:#16a34a;
+    border-radius:14px;
+    font-size:16px;
+}
+
+.audio-btn:hover,
+.start-audio-btn:hover{
+    background:#ff6e40;
+    transform:translateY(-1px);
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+}
+
+.option-btn{
+    border:2px solid #cbd5e1;
+    background:white;
+    color:#1e293b;
+    min-height:60px;
+    border-radius:14px;
+    padding:14px 15px;
+    cursor:pointer;
+    text-align:left;
+    font-weight:700;
+    font-size:17px;
+    transition:.2s;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    touch-action:manipulation;
+}
+
+.option-btn:hover{
+    background:#f1f5f9;
+    border-color:#94a3b8;
+    transform:translateY(-1px);
+}
+
+.option-btn:disabled{
+    cursor:not-allowed;
+}
+
+.option-text.hz{
+    font-size:clamp(28px,8vw,34px);
+    font-weight:900;
+    color:#1e3d59;
+}
+
+.option-text.py{
+    font-size:clamp(20px,6vw,25px);
+    color:#ff6e40;
+    font-weight:900;
+}
+
+.option-text.vn{
+    font-size:17px;
+    color:#1e293b;
+    line-height:1.4;
+}
+
+.combo-box{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.combo-hz{
+    font-size:26px;
+    color:#1e3d59;
+    font-weight:900;
+}
+
+.combo-py{
+    font-size:18px;
+    color:#ff6e40;
+    font-weight:800;
+}
+
+.combo-vn{
+    font-size:15px;
+    color:#475569;
+}
+
+.mini-audio{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    min-width:38px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#e2e8f0;
+    color:#0f172a;
+    font-size:15px;
+    flex-shrink:0;
+    cursor:pointer;
+    transition:.2s;
+    border:none;
+    touch-action:manipulation;
+}
+
+.mini-audio:hover{
+    background:#ff6e40;
+    color:white;
+}
+
+.correct{
+    background:#22c55e!important;
+    color:white!important;
+    border-color:#22c55e!important;
+}
+
+.incorrect{
+    background:#ef4444!important;
+    color:white!important;
+    border-color:#ef4444!important;
+}
+
+.correct .option-text,
+.incorrect .option-text,
+.correct .combo-hz,
+.correct .combo-py,
+.correct .combo-vn,
+.incorrect .combo-hz,
+.incorrect .combo-py,
+.incorrect .combo-vn{
+    color:white!important;
+}
+
+.explanation{
+    display:none;
+    margin-top:16px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#7c2d12;
+    border-radius:16px;
+    padding:14px;
+    line-height:1.6;
+}
+
+.arrange-area{
+    display:none;
+}
+
+.word-bank,
+.answer-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    min-height:62px;
+    padding:14px;
+    border-radius:14px;
+    margin-top:12px;
+}
+
+.word-bank{
+    background:#eef2ff;
+    border:1px dashed #818cf8;
+}
+
+.answer-bank{
+    background:#f8fafc;
+    border:1px dashed #94a3b8;
+}
+
+.token-btn{
+    border:none;
+    background:#1e3d59;
+    color:white;
+    padding:10px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:clamp(18px,6vw,22px);
+    font-weight:900;
+    transition:.2s;
+    touch-action:manipulation;
+}
+
+.token-btn:hover{
+    background:#ff6e40;
+}
+
+.selected-token{
+    background:#ff6e40;
+}
+
+.check-arrange-btn{
+    margin-top:14px;
+    width:100%;
+    border:none;
+    background:#7c3aed;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    touch-action:manipulation;
+}
+
+.control-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:18px;
+}
+
+.next-btn,
+.reset-btn{
+    border:none;
+    padding:14px 16px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s;
+    touch-action:manipulation;
+}
+
+.next-btn{
+    display:none;
+    background:#ff6e40;
+    color:white;
+}
+
+.next-btn:hover{
+    background:#e65100;
+}
+
+.reset-btn{
+    background:#e2e8f0;
+    color:#0f172a;
+}
+
+.reset-btn:hover{
+    background:#cbd5e1;
+}
+
+.auto-speak-row{
+    margin-top:14px;
+    text-align:center;
+    font-size:14px;
+    color:#475569;
+}
+
+.finish-box{
+    display:none;
+    background:#ecfdf5;
+    border:2px solid #86efac;
+    color:#14532d;
+    border-radius:20px;
+    padding:24px;
+    text-align:center;
+    margin-top:18px;
+}
+
+.finish-box h2{
+    margin-top:0;
+    color:#166534;
+}
+
+.perfect-message{
+    font-size:22px;
+    font-weight:900;
+    color:#15803d;
+    margin-bottom:12px;
+}
+
+@media(max-width:780px){
+    body{
+        padding:8px;
+    }
+
+    .container{
+        padding:16px;
+        border-radius:18px;
+    }
+
+    .settings{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .control-row{
+        grid-template-columns:1fr;
+    }
+
+    .question-card{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Ôn Tập Từ Vựng Tiếng Trung</h1>
+    <div class="subtitle">Hán tự · Pinyin · Nghĩa tiếng Việt · Nghe câu · Sắp xếp câu</div>
+
+    <div class="mobile-note">
+        Dùng được trên Android, iPhone và laptop. Với iPhone/Safari, hãy bấm nút “Bật âm thanh” trước khi luyện nghe.
+    </div>
+
+    <button class="start-audio-btn" onclick="unlockAudio()">🔊 Bật âm thanh / kiểm tra giọng đọc</button>
+
+    <div class="settings">
+        <div class="select-box">
+            <label for="mode-select">Chế độ ôn tập</label>
+            <select id="mode-select" onchange="restartQuiz()">
+                <option value="mixed">Tổng hợp tất cả</option>
+                <option value="vocab">Chỉ ôn từ vựng</option>
+                <option value="listening">Chỉ luyện nghe</option>
+                <option value="sentence">Ưu tiên câu / sắp xếp câu</option>
+            </select>
+        </div>
+
+        <div class="select-box">
+            <label for="amount-select">Gói câu hỏi</label>
+            <select id="amount-select" onchange="handleAmountChange()">
+                <option value="60">60 câu</option>
+                <option value="80">80 câu</option>
+                <option value="100" selected>100 câu</option>
+                <option value="custom">Nhập số câu tùy thích</option>
+            </select>
+        </div>
+
+        <div class="select-box">
+            <label for="custom-amount">Số câu tùy thích</label>
+            <input type="number" id="custom-amount" min="1" max="500" value="100" disabled oninput="restartQuiz()">
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat-label">Câu</div>
+            <div class="stat-value"><span id="current-question">1</span>/<span id="total-question">100</span></div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-label">Điểm</div>
+            <div class="stat-value"><span id="score">0</span></div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-label">Đúng</div>
+            <div class="stat-value"><span id="correct-count">0</span></div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-label">Sai</div>
+            <div class="stat-value"><span id="wrong-count">0</span></div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-label">Chính xác</div>
+            <div class="stat-value"><span id="accuracy">0%</span></div>
+        </div>
+    </div>
+
+    <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="question-card" id="question-card"></div>
+
+    <div class="options" id="options-container"></div>
+
+    <div class="arrange-area" id="arrange-area">
+        <div>
+            <strong>Chọn từng từ bên dưới để sắp xếp thành câu đúng:</strong>
+        </div>
+
+        <div class="answer-bank" id="answer-bank"></div>
+        <div class="word-bank" id="word-bank"></div>
+
+        <button class="check-arrange-btn" onclick="checkArrangeAnswer()">Kiểm tra câu</button>
+    </div>
+
+    <div class="explanation" id="explanation"></div>
+
+    <div class="control-row">
+        <button class="reset-btn" onclick="restartQuiz()">Trộn lại từ đầu</button>
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Câu tiếp theo ➜</button>
+    </div>
+
+    <div class="auto-speak-row">
+        <input type="checkbox" id="auto-speak" checked>
+        <label for="auto-speak">Tự phát âm khi sang câu mới</label>
+    </div>
+
+    <div class="finish-box" id="finish-box">
+        <h2>Hoàn thành rồi!</h2>
+        <div id="perfect-message"></div>
+        <p id="finish-result"></p>
+        <button class="next-btn" style="display:inline-block;width:auto;" onclick="restartQuiz()">Làm lại</button>
+    </div>
+</div>
+
+<script>
+const wordList=[
+    {hz:"你",py:"nǐ",vn:"Bạn"},
+    {hz:"妈妈",py:"māma",vn:"Mẹ"},
+    {hz:"你好",py:"nǐhǎo",vn:"Xin chào"},
+    {hz:"好",py:"hǎo",vn:"Tốt"},
+    {hz:"哥哥",py:"gēge",vn:"Anh trai"},
+    {hz:"他",py:"tā",vn:"Anh ấy"},
+    {hz:"她",py:"tā",vn:"Cô ấy"},
+    {hz:"妹妹",py:"mèimei",vn:"Em gái"},
+    {hz:"男",py:"nán",vn:"Con trai, đàn ông, nam"},
+    {hz:"弟弟",py:"dìdi",vn:"Em trai"},
+    {hz:"太",py:"tài",vn:"Quá"},
+    {hz:"难",py:"nán",vn:"Khó"},
+    {hz:"忙",py:"máng",vn:"Bận"},
+    {hz:"很",py:"hěn",vn:"Rất"},
+    {hz:"我",py:"wǒ",vn:"Tôi"},
+    {hz:"汉语",py:"hànyǔ",vn:"Tiếng Trung"},
+    {hz:"爸爸",py:"bàba",vn:"Bố"},
+    {hz:"对",py:"duì",vn:"Đúng, chính xác"},
+    {hz:"学",py:"xué",vn:"Học"},
+    {hz:"去",py:"qù",vn:"Đi"},
+    {hz:"回",py:"huí",vn:"Về, quay về"},
+    {hz:"家",py:"jiā",vn:"Nhà"},
+    {hz:"明天",py:"míngtiān",vn:"Ngày mai"},
+    {hz:"见",py:"jiàn",vn:"Gặp, thấy"},
+    {hz:"银行",py:"yínháng",vn:"Ngân hàng"},
+    {hz:"取",py:"qǔ",vn:"Lấy, rút"},
+    {hz:"钱",py:"qián",vn:"Tiền"},
+    {hz:"天",py:"tiān",vn:"Bầu trời, ngày"},
+    {hz:"日",py:"rì",vn:"Ngày"},
+    {hz:"月",py:"yuè",vn:"Tháng"},
+    {hz:"今天",py:"jīntiān",vn:"Hôm nay"},
+    {hz:"昨天",py:"zuótiān",vn:"Hôm qua"},
+    {hz:"星期",py:"xīngqī",vn:"Tuần"},
+    {hz:"学期",py:"xuéqī",vn:"Học kỳ"},
+    {hz:"几",py:"jǐ",vn:"Mấy"},
+    {hz:"这",py:"zhè",vn:"Đây, này"},
+    {hz:"那",py:"nà",vn:"Kia, đó"},
+    {hz:"人",py:"rén",vn:"Người"},
+    {hz:"是",py:"shì",vn:"Là"},
+    {hz:"学校",py:"xuéxiào",vn:"Trường học"},
+    {hz:"大学",py:"dàxué",vn:"Trường đại học"},
+    {hz:"再",py:"zài",vn:"Nữa, lại"},
+    {hz:"再见",py:"zàijiàn",vn:"Tạm biệt"},
+    {hz:"明天见",py:"míngtiān jiàn",vn:"Hẹn gặp lại ngày mai"},
+    {hz:"对不起",py:"duìbuqǐ",vn:"Xin lỗi"},
+    {hz:"老师",py:"lǎoshī",vn:"Thầy, cô giáo"},
+    {hz:"您",py:"nín",vn:"Ngài, ông, bà"},
+    {hz:"请",py:"qǐng",vn:"Mời, xin mời"},
+    {hz:"进",py:"jìn",vn:"Vào"},
+    {hz:"坐",py:"zuò",vn:"Ngồi"},
+    {hz:"喝",py:"hē",vn:"Uống"},
+    {hz:"渴",py:"kě",vn:"Khát"},
+    {hz:"水",py:"shuǐ",vn:"Nước"},
+    {hz:"茶",py:"chá",vn:"Trà, chè"},
+    {hz:"好喝",py:"hǎohē",vn:"Uống ngon"},
+    {hz:"谁",py:"shéi",vn:"Ai"},
+    {hz:"中国",py:"zhōngguó",vn:"Trung Quốc"},
+    {hz:"工作",py:"gōngzuò",vn:"Công việc, làm việc"},
+    {hz:"身体",py:"shēntǐ",vn:"Cơ thể, sức khỏe"},
+    {hz:"学生",py:"xuésheng",vn:"Học sinh, sinh viên"},
+    {hz:"问",py:"wèn",vn:"Hỏi"},
+    {hz:"吧",py:"ba",vn:"Nhé, nha, đi"},
+    {hz:"贵",py:"guì",vn:"Đắt, quý"},
+    {hz:"姓",py:"xìng",vn:"Họ"},
+    {hz:"叫",py:"jiào",vn:"Gọi, tên là"},
+    {hz:"名字",py:"míngzì",vn:"Tên"},
+    {hz:"哪",py:"nǎ",vn:"Nào"},
+    {hz:"那儿",py:"nàr",vn:"Chỗ kia, chỗ đó"},
+    {hz:"哪儿",py:"nǎr",vn:"Đâu, chỗ nào"},
+    {hz:"德国",py:"déguó",vn:"Nước Đức"},
+    {hz:"法国",py:"fǎguó",vn:"Nước Pháp"},
+    {hz:"俄国",py:"éguó",vn:"Nước Nga"},
+    {hz:"英国",py:"yīngguó",vn:"Nước Anh"},
+    {hz:"日本",py:"rìběn",vn:"Nước Nhật"},
+    {hz:"美国",py:"měiguó",vn:"Nước Mỹ"},
+    {hz:"汉字",py:"hànzì",vn:"Chữ Hán"},
+    {hz:"发音",py:"fāyīn",vn:"Phát âm"},
+    {hz:"朋友",py:"péngyou",vn:"Bạn bè"},
+    {hz:"越南",py:"yuènán",vn:"Việt Nam"},
+    {hz:"学习",py:"xuéxí",vn:"Học, học tập"},
+    {hz:"什么",py:"shénme",vn:"Cái gì, gì"},
+    {hz:"书",py:"shū",vn:"Sách"},
+    {hz:"杂志",py:"zázhì",vn:"Tạp chí"},
+    {hz:"怎么样",py:"zěnme yàng",vn:"Thế nào, như thế nào"}
+];
+
+const sentenceList=[
+    {hz:"你好",py:"nǐ hǎo",vn:"Xin chào",tokens:["你","好"]},
+    {hz:"我很好",py:"wǒ hěn hǎo",vn:"Tôi rất khỏe / tôi rất tốt",tokens:["我","很","好"]},
+    {hz:"我很忙",py:"wǒ hěn máng",vn:"Tôi rất bận",tokens:["我","很","忙"]},
+    {hz:"妈妈很好",py:"māma hěn hǎo",vn:"Mẹ rất khỏe / mẹ rất tốt",tokens:["妈妈","很","好"]},
+    {hz:"爸爸很好",py:"bàba hěn hǎo",vn:"Bố rất khỏe / bố rất tốt",tokens:["爸爸","很","好"]},
+    {hz:"哥哥很忙",py:"gēge hěn máng",vn:"Anh trai rất bận",tokens:["哥哥","很","忙"]},
+    {hz:"妹妹学汉语",py:"mèimei xué hànyǔ",vn:"Em gái học tiếng Trung",tokens:["妹妹","学","汉语"]},
+    {hz:"我学汉语",py:"wǒ xué hànyǔ",vn:"Tôi học tiếng Trung",tokens:["我","学","汉语"]},
+    {hz:"我学习汉语",py:"wǒ xuéxí hànyǔ",vn:"Tôi học tiếng Trung",tokens:["我","学习","汉语"]},
+    {hz:"他去学校",py:"tā qù xuéxiào",vn:"Anh ấy đi đến trường",tokens:["他","去","学校"]},
+    {hz:"她回家",py:"tā huí jiā",vn:"Cô ấy về nhà",tokens:["她","回","家"]},
+    {hz:"我去银行取钱",py:"wǒ qù yínháng qǔ qián",vn:"Tôi đi ngân hàng rút tiền",tokens:["我","去","银行","取","钱"]},
+    {hz:"今天星期几",py:"jīntiān xīngqī jǐ",vn:"Hôm nay là thứ mấy?",tokens:["今天","星期","几"]},
+    {hz:"明天见",py:"míngtiān jiàn",vn:"Ngày mai gặp lại",tokens:["明天","见"]},
+    {hz:"老师请进",py:"lǎoshī qǐng jìn",vn:"Thầy/cô giáo, xin mời vào",tokens:["老师","请","进"]},
+    {hz:"请坐",py:"qǐng zuò",vn:"Mời ngồi",tokens:["请","坐"]},
+    {hz:"请喝茶",py:"qǐng hē chá",vn:"Mời uống trà",tokens:["请","喝","茶"]},
+    {hz:"茶很好喝",py:"chá hěn hǎohē",vn:"Trà rất ngon",tokens:["茶","很","好喝"]},
+    {hz:"水很好喝",py:"shuǐ hěn hǎohē",vn:"Nước uống rất ngon",tokens:["水","很","好喝"]},
+    {hz:"你叫什么名字",py:"nǐ jiào shénme míngzì",vn:"Bạn tên là gì?",tokens:["你","叫","什么","名字"]},
+    {hz:"你姓什么",py:"nǐ xìng shénme",vn:"Bạn họ gì?",tokens:["你","姓","什么"]},
+    {hz:"你是哪儿人",py:"nǐ shì nǎr rén",vn:"Bạn là người ở đâu?",tokens:["你","是","哪儿","人"]},
+    {hz:"我是越南人",py:"wǒ shì yuènán rén",vn:"Tôi là người Việt Nam",tokens:["我","是","越南","人"]},
+    {hz:"他是中国人",py:"tā shì zhōngguó rén",vn:"Anh ấy là người Trung Quốc",tokens:["他","是","中国","人"]},
+    {hz:"她是学生",py:"tā shì xuésheng",vn:"Cô ấy là học sinh / sinh viên",tokens:["她","是","学生"]},
+    {hz:"这是书",py:"zhè shì shū",vn:"Đây là sách",tokens:["这","是","书"]},
+    {hz:"那是杂志",py:"nà shì zázhì",vn:"Kia là tạp chí",tokens:["那","是","杂志"]},
+    {hz:"这是什么",py:"zhè shì shénme",vn:"Đây là cái gì?",tokens:["这","是","什么"]},
+    {hz:"汉字很难",py:"hànzì hěn nán",vn:"Chữ Hán rất khó",tokens:["汉字","很","难"]},
+    {hz:"发音很难",py:"fāyīn hěn nán",vn:"Phát âm rất khó",tokens:["发音","很","难"]},
+    {hz:"朋友学习汉语",py:"péngyou xuéxí hànyǔ",vn:"Bạn bè học tiếng Trung",tokens:["朋友","学习","汉语"]},
+    {hz:"你学习什么",py:"nǐ xuéxí shénme",vn:"Bạn học gì?",tokens:["你","学习","什么"]},
+    {hz:"那儿是学校",py:"nàr shì xuéxiào",vn:"Chỗ đó là trường học",tokens:["那儿","是","学校"]},
+    {hz:"你身体怎么样",py:"nǐ shēntǐ zěnme yàng",vn:"Sức khỏe bạn thế nào?",tokens:["你","身体","怎么样"]},
+    {hz:"书很贵",py:"shū hěn guì",vn:"Sách rất đắt",tokens:["书","很","贵"]},
+    {hz:"中国朋友很好",py:"zhōngguó péngyou hěn hǎo",vn:"Bạn Trung Quốc rất tốt",tokens:["中国","朋友","很","好"]},
+    {hz:"越南学生学习汉语",py:"yuènán xuésheng xuéxí hànyǔ",vn:"Học sinh Việt Nam học tiếng Trung",tokens:["越南","学生","学习","汉语"]},
+    {hz:"我不是老师",py:"wǒ bú shì lǎoshī",vn:"Tôi không phải là giáo viên",tokens:["我","不","是","老师"]},
+    {hz:"他不是学生",py:"tā bú shì xuésheng",vn:"Anh ấy không phải là học sinh / sinh viên",tokens:["他","不","是","学生"]},
+    {hz:"她不是中国人",py:"tā bú shì zhōngguó rén",vn:"Cô ấy không phải là người Trung Quốc",tokens:["她","不","是","中国","人"]},
+    {hz:"你喝水吗",py:"nǐ hē shuǐ ma",vn:"Bạn uống nước không?",tokens:["你","喝","水","吗"]},
+    {hz:"你喝茶吗",py:"nǐ hē chá ma",vn:"Bạn uống trà không?",tokens:["你","喝","茶","吗"]},
+    {hz:"这个汉字很难",py:"zhè ge hànzì hěn nán",vn:"Chữ Hán này rất khó",tokens:["这","汉字","很","难"]},
+    {hz:"这个发音很好",py:"zhè ge fāyīn hěn hǎo",vn:"Phát âm này rất tốt",tokens:["这","发音","很","好"]},
+    {hz:"你朋友叫什么名字",py:"nǐ péngyou jiào shénme míngzì",vn:"Bạn của bạn tên là gì?",tokens:["你","朋友","叫","什么","名字"]},
+    {hz:"我朋友是越南人",py:"wǒ péngyou shì yuènán rén",vn:"Bạn của tôi là người Việt Nam",tokens:["我","朋友","是","越南","人"]},
+    {hz:"明天我去学校",py:"míngtiān wǒ qù xuéxiào",vn:"Ngày mai tôi đi đến trường",tokens:["明天","我","去","学校"]},
+    {hz:"今天我学习汉语",py:"jīntiān wǒ xuéxí hànyǔ",vn:"Hôm nay tôi học tiếng Trung",tokens:["今天","我","学习","汉语"]},
+    {hz:"昨天我回家",py:"zuótiān wǒ huí jiā",vn:"Hôm qua tôi về nhà",tokens:["昨天","我","回","家"]},
+    {hz:"你爸爸工作忙吗",py:"nǐ bàba gōngzuò máng ma",vn:"Bố của bạn làm việc bận không?",tokens:["你","爸爸","工作","忙","吗"]},
+    {hz:"我妈妈身体很好",py:"wǒ māma shēntǐ hěn hǎo",vn:"Sức khỏe của mẹ tôi rất tốt",tokens:["我","妈妈","身体","很","好"]},
+    {hz:"老师问学生",py:"lǎoshī wèn xuésheng",vn:"Giáo viên hỏi học sinh",tokens:["老师","问","学生"]},
+    {hz:"学生问老师",py:"xuésheng wèn lǎoshī",vn:"Học sinh hỏi giáo viên",tokens:["学生","问","老师"]},
+    {hz:"请问你叫什么名字",py:"qǐng wèn nǐ jiào shénme míngzì",vn:"Xin hỏi bạn tên là gì?",tokens:["请","问","你","叫","什么","名字"]},
+    {hz:"你是哪国人",py:"nǐ shì nǎ guó rén",vn:"Bạn là người nước nào?",tokens:["你","是","哪","国","人"]},
+    {hz:"我是中国学生",py:"wǒ shì zhōngguó xuésheng",vn:"Tôi là học sinh / sinh viên Trung Quốc",tokens:["我","是","中国","学生"]},
+    {hz:"她是美国人",py:"tā shì měiguó rén",vn:"Cô ấy là người Mỹ",tokens:["她","是","美国","人"]},
+    {hz:"他是英国人",py:"tā shì yīngguó rén",vn:"Anh ấy là người Anh",tokens:["他","是","英国","人"]}
+];
+
+const wordQuestionTypes=[
+    {id:"hz_to_vn",title:"Hán tự → Nghĩa",instruction:"Chọn nghĩa tiếng Việt đúng của từ sau:",questionField:"hz",answerField:"vn"},
+    {id:"hz_to_py",title:"Hán tự → Pinyin",instruction:"Chọn pinyin đúng của Hán tự sau:",questionField:"hz",answerField:"py"},
+    {id:"vn_to_hz",title:"Tiếng Việt → Hán tự",instruction:"Chọn Hán tự đúng với nghĩa sau:",questionField:"vn",answerField:"hz"},
+    {id:"vn_to_py",title:"Tiếng Việt → Pinyin",instruction:"Chọn pinyin đúng với nghĩa sau:",questionField:"vn",answerField:"py"},
+    {id:"py_to_vn",title:"Pinyin → Nghĩa",instruction:"Chọn nghĩa tiếng Việt đúng của pinyin sau:",questionField:"py",answerField:"vn"},
+    {id:"py_to_hz",title:"Pinyin → Hán tự",instruction:"Chọn Hán tự đúng với pinyin sau:",questionField:"py",answerField:"hz",showMeaningHint:true},
+    {id:"vn_to_combo",title:"Nghĩa → Cặp đầy đủ",instruction:"Chọn cặp Hán tự + pinyin đúng với nghĩa sau:",questionField:"vn",answerField:"combo"}
+];
+
+const listeningQuestionTypes=[
+    {id:"audio_to_vn",title:"Nghe từ → Nghĩa",instruction:"Nghe phát âm rồi chọn nghĩa đúng:",questionField:"audio",answerField:"vn"},
+    {id:"audio_to_py",title:"Nghe từ → Pinyin",instruction:"Nghe phát âm rồi chọn pinyin đúng:",questionField:"audio",answerField:"py"},
+    {id:"audio_to_hz",title:"Nghe từ → Hán tự",instruction:"Nghe phát âm rồi chọn Hán tự đúng:",questionField:"audio",answerField:"hz",showMeaningHint:true}
+];
+
+const sentenceQuestionTypes=[
+    {id:"sent_hz_to_vn",title:"Đọc câu Trung → Nghĩa Việt",instruction:"Đọc câu tiếng Trung rồi chọn nghĩa tiếng Việt đúng:",questionField:"hz",answerField:"vn"},
+    {id:"sent_vn_to_hz",title:"Nghĩa Việt → Câu Trung",instruction:"Đọc nghĩa tiếng Việt rồi chọn câu tiếng Trung đúng:",questionField:"vn",answerField:"hz"},
+    {id:"sent_hz_to_py",title:"Câu Trung → Pinyin",instruction:"Chọn pinyin đúng của câu sau:",questionField:"hz",answerField:"py"},
+    {id:"sent_audio_to_vn",title:"Nghe câu Trung → Nghĩa Việt",instruction:"Nghe câu tiếng Trung rồi chọn nghĩa tiếng Việt đúng:",questionField:"audio",answerField:"vn"},
+    {id:"sent_audio_to_hz",title:"Nghe câu Trung → Câu Hán tự",instruction:"Nghe câu tiếng Trung rồi chọn câu Hán tự đúng:",questionField:"audio",answerField:"hz"}
+];
+
+const arrangeQuestionType={
+    id:"arrange_hz",
+    title:"Sắp xếp câu",
+    instruction:"Sắp xếp các từ thành câu tiếng Trung đúng:",
+    questionField:"vn",
+    answerField:"hz"
+};
+
+let questionQueue=[];
+let currentIndex=0;
+let score=0;
+let correctCount=0;
+let wrongCount=0;
+let hasAnswered=false;
+let currentQuestion=null;
+let selectedTokenIndexes=[];
+let currentShuffledTokens=[];
+
+function shuffleArray(array){
+    const copied=[...array];
+    for(let i=copied.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [copied[i],copied[j]]=[copied[j],copied[i]];
+    }
+    return copied;
+}
+
+function randomItem(array){
+    return array[Math.floor(Math.random()*array.length)];
+}
+
+function unlockAudio(){
+    speakChinese("你好");
+}
+
+function handleAmountChange(){
+    const amountSelect=document.getElementById("amount-select");
+    const customInput=document.getElementById("custom-amount");
+
+    if(amountSelect.value==="custom"){
+        customInput.disabled=false;
+        customInput.focus();
+    }else{
+        customInput.disabled=true;
+    }
+
+    restartQuiz();
+}
+
+function getSelectedQuestionAmount(){
+    const amountSelect=document.getElementById("amount-select");
+    const customInput=document.getElementById("custom-amount");
+
+    if(amountSelect.value==="custom"){
+        let customValue=Number(customInput.value);
+        if(!customValue||customValue<1) customValue=60;
+        if(customValue>500){
+            customValue=500;
+            customInput.value=500;
+        }
+        return customValue;
+    }
+
+    return Number(amountSelect.value);
+}
+
+function getDisplayValue(item,field){
+    if(field==="hz") return item.hz;
+    if(field==="py") return item.py;
+    if(field==="vn") return item.vn;
+    if(field==="combo") return `${item.hz} — ${item.py} — ${item.vn}`;
+    return "";
+}
+
+function getFieldClass(field){
+    if(field==="hz") return "hz";
+    if(field==="py") return "py";
+    if(field==="vn") return "vn";
+    if(field==="combo") return "combo";
+    return "vn";
+}
+
+function shouldShowAudio(field){
+    return field==="hz"||field==="py"||field==="combo";
+}
+
+function speakChinese(text){
+    if(!("speechSynthesis" in window)){
+        alert("Trình duyệt của bạn chưa hỗ trợ Web Speech API.");
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance=new SpeechSynthesisUtterance(text);
+    utterance.lang="zh-CN";
+    utterance.rate=.78;
+    utterance.pitch=1;
+
+    const voices=window.speechSynthesis.getVoices();
+    const chineseVoice=voices.find(voice =>
+        voice.lang.toLowerCase().includes("zh") ||
+        voice.name.toLowerCase().includes("chinese") ||
+        voice.name.toLowerCase().includes("mandarin")
+    );
+
+    if(chineseVoice) utterance.voice=chineseVoice;
+
+    window.speechSynthesis.speak(utterance);
+}
+
+function speakCurrent(){
+    if(!currentQuestion) return;
+
+    if(currentQuestion.item && currentQuestion.item.hz){
+        speakChinese(currentQuestion.item.hz);
+    }
+}
+
+function buildQuestionPool(){
+    const mode=document.getElementById("mode-select").value;
+    let pool=[];
+
+    if(mode==="vocab"||mode==="mixed"){
+        wordList.forEach(word=>{
+            wordQuestionTypes.forEach(type=>{
+                pool.push({
+                    kind:"choice",
+                    source:"word",
+                    item:word,
+                    type:type
+                });
+            });
+        });
+    }
+
+    if(mode==="listening"||mode==="mixed"){
+        wordList.forEach(word=>{
+            listeningQuestionTypes.forEach(type=>{
+                pool.push({
+                    kind:"choice",
+                    source:"word",
+                    item:word,
+                    type:type
+                });
+            });
+        });
+
+        sentenceList.forEach(sentence=>{
+            sentenceQuestionTypes
+                .filter(type=>type.id.includes("audio"))
+                .forEach(type=>{
+                    pool.push({
+                        kind:"choice",
+                        source:"sentence",
+                        item:sentence,
+                        type:type
+                    });
+                });
+        });
+    }
+
+    if(mode==="sentence"||mode==="mixed"){
+        sentenceList.forEach(sentence=>{
+            sentenceQuestionTypes.forEach(type=>{
+                pool.push({
+                    kind:"choice",
+                    source:"sentence",
+                    item:sentence,
+                    type:type
+                });
+            });
+
+            const arrangeWeight=mode==="sentence"?10:7;
+
+            for(let i=0;i<arrangeWeight;i++){
+                pool.push({
+                    kind:"arrange",
+                    source:"sentence",
+                    item:sentence,
+                    type:arrangeQuestionType
+                });
+            }
+        });
+    }
+
+    if(pool.length===0){
+        wordList.forEach(word=>{
+            wordQuestionTypes.forEach(type=>{
+                pool.push({
+                    kind:"choice",
+                    source:"word",
+                    item:word,
+                    type:type
+                });
+            });
+        });
+    }
+
+    return pool;
+}
+
+function createQuestionQueue(pool,amount){
+    let shuffledPool=shuffleArray(pool);
+    let queue=[];
+
+    while(queue.length<amount){
+        if(shuffledPool.length===0){
+            shuffledPool=shuffleArray(pool);
+        }
+
+        queue.push(shuffledPool.pop());
+    }
+
+    return queue;
+}
+
+function restartQuiz(){
+    const pool=buildQuestionPool();
+    const amount=getSelectedQuestionAmount();
+
+    questionQueue=createQuestionQueue(pool,amount);
+
+    currentIndex=0;
+    score=0;
+    correctCount=0;
+    wrongCount=0;
+    hasAnswered=false;
+    currentQuestion=null;
+    selectedTokenIndexes=[];
+    currentShuffledTokens=[];
+
+    document.getElementById("finish-box").style.display="none";
+    document.getElementById("question-card").style.display="block";
+
+    loadQuestion();
+}
+
+function loadQuestion(){
+    if(currentIndex>=questionQueue.length){
+        finishQuiz();
+        return;
+    }
+
+    hasAnswered=false;
+    selectedTokenIndexes=[];
+    currentShuffledTokens=[];
+    currentQuestion=questionQueue[currentIndex];
+
+    document.getElementById("next-btn").style.display="none";
+    document.getElementById("explanation").style.display="none";
+    document.getElementById("finish-box").style.display="none";
+
+    updateStats();
+
+    if(currentQuestion.kind==="choice"){
+        renderChoiceQuestion();
+    }else{
+        renderArrangeQuestion();
+    }
+
+    if(document.getElementById("auto-speak").checked){
+        const qField=currentQuestion.type.questionField;
+
+        if(qField==="audio"){
+            setTimeout(speakCurrent,350);
+        }
+    }
+}
+
+function renderChoiceQuestion(){
+    const q=currentQuestion;
+    const item=q.item;
+    const type=q.type;
+
+    document.getElementById("options-container").style.display="grid";
+    document.getElementById("arrange-area").style.display="none";
+
+    let mainHTML="";
+
+    if(type.questionField==="audio"){
+        mainHTML=`
+            <div class="question-main audio-main">🔊 ?</div>
+            <div class="hint">Bấm nghe âm thanh rồi chọn đáp án đúng bên dưới.</div>
+        `;
+    }else{
+        const value=getDisplayValue(item,type.questionField);
+        const fieldClass=getFieldClass(type.questionField);
+
+        let mainClass="vn-main";
+        if(fieldClass==="hz") mainClass="hz-main";
+        if(fieldClass==="py") mainClass="py-main";
+
+        mainHTML=`<div class="question-main ${mainClass}">${value}</div>`;
+    }
+
+    let hintHTML="";
+
+    if(type.showMeaningHint){
+        hintHTML=`<div class="hint">Gợi ý nghĩa: <strong>${item.vn}</strong></div>`;
+    }
+
+    document.getElementById("question-card").innerHTML=`
+        <div class="question-type">${type.title}</div>
+        <div class="question-title">${type.instruction}</div>
+        ${mainHTML}
+        ${hintHTML}
+        <div class="audio-row">
+            <button class="audio-btn" onclick="speakCurrent()">🔊 Nghe phát âm</button>
+        </div>
+    `;
+
+    renderOptions();
+}
+
+function renderOptions(){
+    const q=currentQuestion;
+    const correctItem=q.item;
+    const answerField=q.type.answerField;
+    const sourceList=q.source==="sentence"?sentenceList:wordList;
+    const correctValue=getDisplayValue(correctItem,answerField);
+
+    let optionItems=[{
+        item:correctItem,
+        value:correctValue
+    }];
+
+    let usedValues=new Set([correctValue]);
+
+    while(optionItems.length<4){
+        const candidate=randomItem(sourceList);
+        const candidateValue=getDisplayValue(candidate,answerField);
+
+        if(!usedValues.has(candidateValue)){
+            optionItems.push({
+                item:candidate,
+                value:candidateValue
+            });
+
+            usedValues.add(candidateValue);
+        }
+    }
+
+    optionItems=shuffleArray(optionItems);
+
+    const container=document.getElementById("options-container");
+    container.innerHTML="";
+
+    optionItems.forEach(option=>{
+        const btn=document.createElement("button");
+        btn.className="option-btn";
+        btn.dataset.value=option.value;
+
+        const textWrapper=document.createElement("div");
+
+        if(answerField==="combo"){
+            textWrapper.className="combo-box";
+            textWrapper.innerHTML=`
+                <div class="combo-hz">${option.item.hz}</div>
+                <div class="combo-py">${option.item.py}</div>
+                <div class="combo-vn">${option.item.vn}</div>
+            `;
+        }else{
+            textWrapper.className=`option-text ${getFieldClass(answerField)}`;
+            textWrapper.textContent=option.value;
+        }
+
+        btn.appendChild(textWrapper);
+
+        if(shouldShowAudio(answerField)){
+            const audioIcon=document.createElement("button");
+            audioIcon.type="button";
+            audioIcon.className="mini-audio";
+            audioIcon.textContent="🔊";
+            audioIcon.title="Nghe phát âm";
+
+            audioIcon.onclick=function(event){
+                event.stopPropagation();
+                speakChinese(option.item.hz);
+            };
+
+            btn.appendChild(audioIcon);
+        }
+
+        btn.onclick=function(){
+            checkChoiceAnswer(btn,option.value);
+        };
+
+        container.appendChild(btn);
+    });
+}
+
+function checkChoiceAnswer(selectedBtn,selectedValue){
+    if(hasAnswered) return;
+
+    hasAnswered=true;
+
+    const correctValue=getDisplayValue(currentQuestion.item,currentQuestion.type.answerField);
+    const buttons=document.querySelectorAll(".option-btn");
+
+    buttons.forEach(btn=>{
+        btn.disabled=true;
+
+        if(btn.dataset.value===correctValue){
+            btn.classList.add("correct");
+        }
+    });
+
+    const isCorrect=selectedValue===correctValue;
+
+    if(isCorrect){
+        score+=10;
+        correctCount++;
+    }else{
+        wrongCount++;
+        selectedBtn.classList.add("incorrect");
+    }
+
+    showExplanation(isCorrect);
+    updateStats();
+
+    document.getElementById("next-btn").style.display="block";
+}
+
+function renderArrangeQuestion(){
+    const sentence=currentQuestion.item;
+
+    document.getElementById("options-container").style.display="none";
+    document.getElementById("arrange-area").style.display="block";
+
+    document.getElementById("question-card").innerHTML=`
+        <div class="question-type">Sắp xếp câu</div>
+        <div class="question-title">Sắp xếp các từ thành câu tiếng Trung đúng:</div>
+        <div class="question-main vn-main">${sentence.vn}</div>
+        <div class="hint">Pinyin gợi ý: <strong>${sentence.py}</strong></div>
+        <div class="audio-row">
+            <button class="audio-btn" onclick="speakCurrent()">🔊 Nghe cả câu</button>
+        </div>
+    `;
+
+    currentShuffledTokens=shuffleArray(sentence.tokens.map((token,index)=>({
+        token,
+        index
+    })));
+
+    renderTokenBanks();
+}
+
+function renderTokenBanks(){
+    const sentence=currentQuestion.item;
+    const answerBank=document.getElementById("answer-bank");
+    const wordBank=document.getElementById("word-bank");
+
+    answerBank.innerHTML="";
+    wordBank.innerHTML="";
+
+    selectedTokenIndexes.forEach((tokenIndex,selectedIndex)=>{
+        const btn=document.createElement("button");
+        btn.className="token-btn selected-token";
+        btn.textContent=sentence.tokens[tokenIndex];
+
+        btn.onclick=function(){
+            if(hasAnswered) return;
+
+            selectedTokenIndexes.splice(selectedIndex,1);
+            renderTokenBanks();
+        };
+
+        answerBank.appendChild(btn);
+    });
+
+    currentShuffledTokens.forEach(obj=>{
+        if(selectedTokenIndexes.includes(obj.index)) return;
+
+        const btn=document.createElement("button");
+        btn.className="token-btn";
+        btn.textContent=obj.token;
+        btn.dataset.index=obj.index;
+
+        btn.onclick=function(){
+            if(hasAnswered) return;
+
+            selectedTokenIndexes.push(obj.index);
+            renderTokenBanks();
+        };
+
+        wordBank.appendChild(btn);
+    });
+}
+
+function checkArrangeAnswer(){
+    if(hasAnswered) return;
+
+    const sentence=currentQuestion.item;
+
+    if(selectedTokenIndexes.length!==sentence.tokens.length){
+        alert("Bạn cần chọn đủ các từ trước khi kiểm tra nha.");
+        return;
+    }
+
+    hasAnswered=true;
+
+    const isCorrect=selectedTokenIndexes.every((tokenIndex,position)=>tokenIndex===position);
+
+    if(isCorrect){
+        score+=15;
+        correctCount++;
+    }else{
+        wrongCount++;
+    }
+
+    const allTokenButtons=document.querySelectorAll(".token-btn");
+    allTokenButtons.forEach(btn=>btn.disabled=true);
+
+    showArrangeExplanation(isCorrect);
+    updateStats();
+
+    document.getElementById("next-btn").style.display="block";
+}
+
+function showExplanation(isCorrect){
+    const item=currentQuestion.item;
+    const explanation=document.getElementById("explanation");
+
+    explanation.style.display="block";
+    explanation.innerHTML=`
+        <strong>${isCorrect?"Chính xác!":"Chưa đúng nha."}</strong><br>
+        Đáp án đúng là:<br>
+        <strong>Hán tự:</strong> ${item.hz}
+        <button class="mini-audio" onclick="speakCurrent()">🔊</button><br>
+        <strong>Pinyin:</strong> ${item.py}<br>
+        <strong>Nghĩa:</strong> ${item.vn}
+    `;
+}
+
+function showArrangeExplanation(isCorrect){
+    const sentence=currentQuestion.item;
+    const explanation=document.getElementById("explanation");
+
+    explanation.style.display="block";
+    explanation.innerHTML=`
+        <strong>${isCorrect?"Sắp xếp đúng rồi!":"Thứ tự chưa đúng nha."}</strong><br>
+        Câu đúng là:<br>
+        <strong>${sentence.hz}</strong>
+        <button class="mini-audio" onclick="speakCurrent()">🔊</button><br>
+        <strong>Pinyin:</strong> ${sentence.py}<br>
+        <strong>Nghĩa:</strong> ${sentence.vn}
+    `;
+}
+
+function updateStats(){
+    const total=questionQueue.length;
+    const answered=correctCount+wrongCount;
+    const accuracy=answered===0?0:Math.round((correctCount/answered)*100);
+    const progress=total===0?0:Math.round((currentIndex/total)*100);
+
+    document.getElementById("current-question").textContent=Math.min(currentIndex+1,total);
+    document.getElementById("total-question").textContent=total;
+    document.getElementById("score").textContent=score;
+    document.getElementById("correct-count").textContent=correctCount;
+    document.getElementById("wrong-count").textContent=wrongCount;
+    document.getElementById("accuracy").textContent=accuracy+"%";
+    document.getElementById("progress-bar").style.width=progress+"%";
+}
+
+function nextQuestion(){
+    currentIndex++;
+
+    if(currentIndex>=questionQueue.length){
+        finishQuiz();
+    }else{
+        loadQuestion();
+        window.scrollTo({top:0,behavior:"smooth"});
+    }
+}
+
+function finishQuiz(){
+    const total=questionQueue.length;
+    const answered=correctCount+wrongCount;
+    const accuracy=answered===0?0:Math.round((correctCount/answered)*100);
+
+    document.getElementById("question-card").style.display="none";
+    document.getElementById("options-container").style.display="none";
+    document.getElementById("arrange-area").style.display="none";
+    document.getElementById("explanation").style.display="none";
+    document.getElementById("next-btn").style.display="none";
+    document.getElementById("progress-bar").style.width="100%";
+
+    const perfectMessage=document.getElementById("perfect-message");
+
+    if(accuracy===100&&total>0){
+        perfectMessage.innerHTML=`
+            <div class="perfect-message">
+                Chúc mừng bạn đã làm bài với điểm số tuyệt đối.
+            </div>
+        `;
+    }else{
+        perfectMessage.innerHTML="";
+    }
+
+    document.getElementById("finish-box").style.display="block";
+    document.getElementById("finish-result").innerHTML=`
+        Tổng số câu: <strong>${total}</strong><br>
+        Điểm: <strong>${score}</strong><br>
+        Đúng: <strong>${correctCount}</strong><br>
+        Sai: <strong>${wrongCount}</strong><br>
+        Độ chính xác: <strong>${accuracy}%</strong>
+    `;
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.addEventListener("keydown",function(event){
+    if(event.key==="Enter"&&hasAnswered){
+        nextQuestion();
+    }
+
+    if(event.code==="Space"){
+        event.preventDefault();
+        speakCurrent();
+    }
+});
+
+window.speechSynthesis.onvoiceschanged=function(){
+    window.speechSynthesis.getVoices();
+};
+
+window.onload=function(){
+    handleAmountChange();
+};
+</script>
+</body>
+</html>
